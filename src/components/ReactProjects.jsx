@@ -23,6 +23,8 @@ const ReactProjects = () => {
       <h3>React Projects</h3>
       <div>
         <ProjectCard/>
+        <ProjectCard/>
+        <ProjectCard/>
       </div>
         
       </div>
