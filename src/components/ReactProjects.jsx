@@ -25,6 +25,9 @@ const ReactProjects = () => {
         <ProjectCard/>
         <ProjectCard/>
         <ProjectCard/>
+        <ProjectCard/>
+        <ProjectCard/>
+        <ProjectCard/>
       </div>
         
       </div>
