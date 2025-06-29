@@ -44,7 +44,8 @@ const skills = [
 const Skills = () => {
   return (
     <>
-      <h3 className='relative text-4xl text-black font-extrabold text-center mb-10'>Skills</h3>
+      <section id="skills">
+        <h3 className='relative text-4xl text-black font-extrabold text-center mb-10'>Skills</h3>
       <div className='relative px-4 sm:px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
         {skills.map(skill => (
   <div
@@ -56,6 +57,7 @@ const Skills = () => {
   </div>
 ))}
       </div>
+      </section>
     </>
   )
 }

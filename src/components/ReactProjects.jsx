@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaReact, FaHtml5, FaCss3Alt, FaJs, FaNodeJs, FaJava } from 'react-icons/fa';
 import { SiTailwindcss, SiRedux, SiMongodb, SiExpress, SiVite, SiDjango, SiEclipseide } from 'react-icons/si';
 import { FaCloud } from "react-icons/fa";
+import { SiPython } from "react-icons/si";
+
 
 function getTechIcon(name) {
   switch (name.toLowerCase()) {
@@ -20,6 +22,37 @@ function getTechIcon(name) {
     case 'eclipse': return <SiEclipseide className="text-indigo-700" />;
     case 'api': return <FaCloud className="text-indigo-400" />;
     case 'iot': return <span className="text-green-500 font-bold">IoT</span>;
+    case 'python': return <SiPython className="text-yellow-600" />;
+    case 'blynk':
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 32 32"
+      fill="none"
+      className="inline-block"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="16" fill="#23C586"/>
+      <path d="M23.5 16c0 4.142-3.358 7.5-7.5 7.5s-7.5-3.358-7.5-7.5 3.358-7.5 7.5-7.5 7.5 3.358 7.5 7.5zm-7.5-5.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7z" fill="#fff"/>
+    </svg>
+  );
+  case 'thingspeak':
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 32 32"
+      fill="none"
+      className="inline-block"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="4" y="4" width="24" height="18" rx="3" fill="#1976D2"/>
+      <rect x="8" y="10" width="16" height="2.5" rx="1.25" fill="#fff"/>
+      <rect x="8" y="15" width="10" height="2.5" rx="1.25" fill="#fff"/>
+      <polygon points="10,22 14,20 28,20 28,25 10,25" fill="#1976D2"/>
+    </svg>
+  );
     default: return null;
   }
 }
@@ -193,6 +226,13 @@ const projects = [
     codeUrl: "https://github.com/GAYATHRI1006/Word_Calculator"
   },
   {
+    title: "Debugging Dare",
+    description:  "Platform offering quiz and IDE challenges to test and improve debugging skills",
+    technologies: ["HTML","python","tailwind","django"],
+    liveUrl: "#",
+    codeUrl: "https://github.com/GAYATHRI1006/Debugging_Dare"
+  },
+  {
     title: "Calendar App",
     description: "Displays and navigates a monthly calendar with today's date highlighted.",
     technologies: ["HTML", "CSS","JavaScript","React"],
@@ -248,8 +288,13 @@ const projects = [
     liveUrl: "https://advice-app-sample.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Advice_App"
   },
-
-
+  {
+    title: "Blog Post",
+    description:  "A responsive and modern blog post layout built using Tailwind CSS.",
+    technologies: ["HTML", "CSS","tailwind"],
+    liveUrl: "#",
+    codeUrl: "https://github.com/GAYATHRI1006/Tailwind_Blog_Project"
+  },
   {
     title: "Java ATM Machine",
     description: "A simple Java console application that simulates basic ATM operations.",
@@ -257,15 +302,28 @@ const projects = [
     codeUrl: "https://github.com/GAYATHRI1006/Java_Project",
     isJava: true
   },
-  // Example IoT project:
+  
   {
-    title: "IoT Weather Station",
-    description: "Monitors temperature and humidity using IoT sensors.",
-    technologies: ["IoT", "NodeJS", "API"],
-    codeUrl: "https://github.com/yourusername/iot-weather-station",
+    title: "IoT-Based Earthquake Monitoring and Alert System",
+    description: "Real-time earthquake monitoring with NodeMCU and IoT-based safety alerts.",
+    technologies: ["IoT","blynk"],
+    codeUrl: "https://github.com/GAYATHRI1006/Earthquake_Alert_System",
+    isIot: true
+  },
+  {
+    title: "Smart Garage Door Monitoring and Control System",
+    description: "IoT garage door system with motion-based control and ThingSpeak monitoring.",
+    technologies: ["IoT","thingspeak"],
+    codeUrl: "https://github.com/GAYATHRI1006/Smart_Garage_Door_System",
+    isIot: true
+  },
+  {
+    title: "Smart Automatic Device For Feeding Pets",
+    description: "An automatic feeder that dispenses food at scheduled times using an RTC and keypad.",
+    technologies: ["IoT"],
+    codeUrl: "https://github.com/GAYATHRI1006/Smart_Pet_Feeder",
     isIot: true
   }
-  // ...other projects...
 ];
 
 const FILTERS = [
@@ -294,7 +352,8 @@ const ReactProjects = () => {
 
   return (
     <>
-      <div className="relative z-10">
+      <section id="projects">
+        <div className="relative z-10">
         <h3 className='relative text-4xl text-black font-extrabold text-center mt-10'>Projects</h3>
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mt-8 mb-8">
@@ -337,6 +396,7 @@ const ReactProjects = () => {
           </div>
         </div>
       </div>
+      </section>
     </>
   );
 };

@@ -1,81 +1,125 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
+
+const navLinks = [
+  { name: "Home", href: "#" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("Home");
+  const [scrolled, setScrolled] = useState(false);
 
-  const menuClicked = () => {
-    setOpen(!open);
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const closeMenu = () => {
+  const handleNavClick = (name, href) => {
+    setActive(name);
     setOpen(false);
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (href && href.startsWith("#")) {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
     <>
-      <nav className="bg-gray-700 text-white px-3 py-4 fixed top-0 w-full z-20 shadow-lg">
-        <div className="flex items-center justify-between w-full">
+      <nav className={`bg-gray-700 text-white fixed top-0 w-full z-20 transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}>
+        <div className="flex items-center justify-between w-full px-3 py-5">
           {/* Logo */}
-          <span className="ml-8 text-2xl font-extrabold tracking-tight cursor-pointer">
-            Devfolio
-          </span>
+          <span
+  className="ml-2 text-2xl md:text-3xl font-extrabold tracking-widest cursor-pointer 
+    bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 
+    bg-clip-text text-transparent 
+    drop-shadow-[0_2px_10px_rgba(56,189,248,0.7)] 
+    animate-pulse transition-shadow  duration-300"
+  style={{
+    filter: "brightness(1.3) contrast(1.2)",
+  }}
+>
+  DevFolio
+</span>
+
+          {/* Desktop Nav */}
+          <ul className="hidden md:flex space-x-8 items-center">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <button
+                  onClick={() => handleNavClick(link.name, link.href)}
+                  className={`relative px-2 py-1 cursor-pointer font-semibold transition-colors duration-200 group
+                    ${active === link.name ? "text-yellow-300" : "text-white"}
+                  `}
+                  style={{ letterSpacing: "0.5px" }}
+                >
+                  {link.name}
+                  {/* Animated thick underline */}
+                  <span
+                    className={`absolute left-0 -bottom-1 w-full h-0.5 rounded 
+                      bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900
+                      transition-all duration-300
+                      scale-x-0 group-hover:scale-x-100
+                      origin-left
+                      ${active === link.name ? "scale-x-100" : ""}
+                    `}
+                  ></span>
+                </button>
+              </li>
+            ))}
+          </ul>
 
           {/* Hamburger Icon */}
           <div className="md:hidden">
             <button
-              onClick={menuClicked}
-              className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none cursor-pointer mr-4"
+              onClick={() => setOpen(!open)}
+              className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none cursor-pointer mr-2"
               aria-label="Toggle menu"
             >
-              {/* Hamburger icon only shows when menu is closed */}
-              {!open && (
+              {!open ? (
                 <>
                   <span className="block h-0.5 w-6 bg-white transition-all duration-300 rounded-sm"></span>
                   <span className="block h-0.5 w-6 bg-white transition-all duration-300 rounded-sm my-1"></span>
                   <span className="block h-0.5 w-6 bg-white transition-all duration-300 rounded-sm"></span>
                 </>
-              )}
-            </button>
-          </div>
-
-          {/* Nav Links */}
-          <div
-            className={`
-              fixed top-0 left-0 h-full w-2/3 bg-gray-700 text-white shadow-lg transform transition-transform duration-300 ease-in-out
-              md:static md:bg-transparent md:shadow-none md:w-auto md:flex md:items-center md:ml-auto
-              ${open ? "translate-x-0" : "-translate-x-full"}
-              md:translate-x-0
-              z-50
-            `}
-          >
-            {/* Close Icon for mobile menu */}
-            <div className="flex justify-end md:hidden">
-              <button
-                onClick={closeMenu}
-                className="p-4 focus:outline-none cursor-pointer"
-                aria-label="Close menu"
-              >
+              ) : (
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              </button>
-            </div>
-            <div className="flex flex-col md:flex-row md:space-x-18 space-y-8 md:space-y-0 mt-24 md:mt-0 px-6 py-6 md:px-0 md:py-0">
-              <a href="#" className="hover:text-yellow-300 text-lg font-medium transition-colors duration-200" onClick={closeMenu}>Home</a>
-              <a href="#" className="hover:text-yellow-300 text-lg font-medium transition-colors duration-200" onClick={closeMenu}>About</a>
-              <a href="#" className="hover:text-yellow-300 text-lg font-medium transition-colors duration-200" onClick={closeMenu}>Skills</a>
-              <a href="#" className="hover:text-yellow-300 text-lg font-medium transition-colors duration-200" onClick={closeMenu}>Projects</a>
-              <a href="#" className="hover:text-yellow-300 text-lg font-medium transition-colors duration-200 md: mr-8" onClick={closeMenu}>Contact</a>
-            </div>
+              )}
+            </button>
           </div>
         </div>
-        {/* Overlay for mobile menu */}
-        {open && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
-            onClick={closeMenu}
-          ></div>
-        )}
+
+        {/* Mobile Nav */}
+        <div
+          className={`md:hidden bg-gray-700 text-white shadow-lg transition-all duration-300 overflow-hidden ${
+            open ? "max-h-60 py-2" : "max-h-0 py-0"
+          }`}
+        >
+          <ul className="flex flex-col space-y-2 px-6">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <button
+                  onClick={() => handleNavClick(link.name, link.href)}
+                  className={`block py-2 font-semibold transition-colors duration-200 w-full text-left
+                    ${active === link.name ? "text-yellow-300" : "text-white"}
+                  `}
+                >
+                  {link.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
       {/* Spacer to prevent content being hidden under navbar */}
       <div className="h-20"></div>
@@ -83,4 +127,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
