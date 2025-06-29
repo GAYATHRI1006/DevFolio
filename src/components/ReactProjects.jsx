@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaHtml5, FaCss3Alt, FaJs, FaNodeJs } from 'react-icons/fa';
-import { SiTailwindcss, SiRedux, SiMongodb, SiExpress, SiVite } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaReact, FaHtml5, FaCss3Alt, FaJs, FaNodeJs, FaJava } from 'react-icons/fa';
+import { SiTailwindcss, SiRedux, SiMongodb, SiExpress, SiVite, SiDjango, SiEclipseide } from 'react-icons/si';
+import { FaCloud } from "react-icons/fa";
 
 function getTechIcon(name) {
   switch (name.toLowerCase()) {
@@ -14,51 +15,71 @@ function getTechIcon(name) {
     case 'mongodb': return <SiMongodb className="text-green-600" />;
     case 'express': return <SiExpress className="text-gray-800" />;
     case 'vite': return <SiVite className="text-purple-400" />;
+    case 'django': return <SiDjango className="text-green-900" />;
+    case 'java': return <FaJava className="text-red-700" />;
+    case 'eclipse': return <SiEclipseide className="text-indigo-700" />;
+    case 'api': return <FaCloud className="text-indigo-400" />;
+    case 'iot': return <span className="text-green-500 font-bold">IoT</span>;
     default: return null;
   }
 }
-
-function ProjectCard({ title, description, technologies, liveUrl, codeUrl }) {
+function ProjectCard({ title, description, technologies, liveUrl, codeUrl, isIot, isJava }) {
   return (
     <div className="relative z-10">
-      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full p-6 transform hover:scale-105 transition-transform duration-300">
+      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl flex flex-col h-full p-6 transform hover:scale-105 transition-transform duration-300">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-700 mb-4">{description}</p>
-        <div className="mb-4">
+        <p className="text-gray-700 mb-3 text-lg">
+          {description}
+        </p>
+        <div className="mb-3">
           <span className="font-semibold text-gray-800">Technologies: </span>
-          <div className="flex flex-wrap gap-3 mt-2">
+          <div className="flex flex-wrap gap-2 mt-1">
             {technologies.map((tech, idx) => (
-              <span key={idx} className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-lg text-sm font-medium">
+              <span key={idx} className="flex items-center gap-1 bg-gray-100 px-2 py-0.5 rounded-lg text-xs font-medium">
                 {getTechIcon(tech)}
                 {tech}
               </span>
             ))}
           </div>
         </div>
-        <div className="flex justify-between mt-auto gap-2">
-          <a
-            href={codeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition"
-          >
-            <FaGithub /> Source Code
-          </a>
-          <a
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
-          >
-            <FaExternalLinkAlt /> View Site
-          </a>
-        </div>
+        <div className="flex-grow" />
+        {(isIot || isJava) ? (
+          <div className="flex justify-center mt-4">
+            <a
+              href={codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition text-base"
+            >
+              <FaGithub /> Source Code
+            </a>
+          </div>
+        ) : (
+          <div className="flex justify-between mt-4 gap-2">
+            <a
+              href={codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition text-base"
+            >
+              <FaGithub /> Source Code
+            </a>
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition text-base"
+            >
+              <FaExternalLinkAlt /> View Site
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+const projects = [
 
-const softwareProjects = [
   {
     title: "Shri Ram Restaurant",
     description: "A static restaurant website with menu and locations.",
@@ -82,7 +103,7 @@ const softwareProjects = [
   },
   {
     title: "BMI Calculator",
-    description: "A responsive React app to calculate BMI.",
+    description: "A responsive React application that calculates Body Mass Index (BMI) instantly.",
     technologies: ["React", "CSS"],
     liveUrl: "https://bmi-calculator-sample.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/BMI_Calculator"
@@ -90,7 +111,7 @@ const softwareProjects = [
   {
     title: "Currency Converter Using React",
     description: "Real-time currency conversion app using API.",
-    technologies: ["React", "CSS", "JavaScript"],
+    technologies: ["React", "CSS", "JavaScript","API"],
     liveUrl: "https://currency-converter-using-react-samp.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Currency_Converter_using_React"
   },
@@ -111,7 +132,7 @@ const softwareProjects = [
   {
     title: "Currency Converter Using Javascript",
     description: "A real-time currency converter using Frankfurter API.",
-    technologies: ["HTML", "CSS","JavaScript"],
+    technologies: ["HTML", "CSS","JavaScript","API"],
     liveUrl: "https://currency-converter-using-api.netlify.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Currency-Converter"
   },
@@ -131,7 +152,7 @@ const softwareProjects = [
   },
   {
     title: "Palindrome Checker",
-    description: "Checks if a word or sentence is a palindrome, ignoring spaces and punctuation.",
+    description: "Checks if a word or sentence is a palindrome or not.",
     technologies: ["HTML", "CSS","JavaScript"],
     liveUrl: "https://palindrome-checker-sample.netlify.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Palindrome_Checker"
@@ -195,7 +216,7 @@ const softwareProjects = [
   {
     title: "QR Code Generator",
     description: "Generates and downloads customizable QR codes using React.",
-    technologies: ["HTML", "CSS","JavaScript","React"],
+    technologies: ["HTML", "CSS","JavaScript","React","API"],
     liveUrl: "https://qr-code-generator-app-sample.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/QR_Code_Generator_App"
   },
@@ -209,7 +230,7 @@ const softwareProjects = [
   {
     title: "Weather App",
     description:  "Weather app fetching real-time data using OpenWeatherMap API.",
-    technologies: ["HTML", "CSS","JavaScript","React"],
+    technologies: ["HTML", "CSS","JavaScript","React","API"],
     liveUrl: "https://weather-app-sample-sigma.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Weather_App"
   },
@@ -223,85 +244,96 @@ const softwareProjects = [
   {
     title: "Advice App",
     description:  "Displays random advice with a counter using the Advice Slip API.",
-    technologies: ["HTML", "CSS","JavaScript","React"],
+    technologies: ["HTML", "CSS","JavaScript","React","API"],
     liveUrl: "https://advice-app-sample.vercel.app/",
     codeUrl: "https://github.com/GAYATHRI1006/Advice_App"
   },
 
 
-
-  
+  {
+    title: "Java ATM Machine",
+    description: "A simple Java console application that simulates basic ATM operations.",
+    technologies: ["Java", "Eclipse"],
+    codeUrl: "https://github.com/GAYATHRI1006/Java_Project",
+    isJava: true
+  },
+  // Example IoT project:
+  {
+    title: "IoT Weather Station",
+    description: "Monitors temperature and humidity using IoT sensors.",
+    technologies: ["IoT", "NodeJS", "API"],
+    codeUrl: "https://github.com/yourusername/iot-weather-station",
+    isIot: true
+  }
+  // ...other projects...
 ];
 
-const hardwareProjects = [
-  {
-    title: "Hardware Project 1",
-    description: "Microcontroller-based temperature monitoring system.",
-    technologies: ["NodeJS", "Express", "MongoDB"],
-    liveUrl: "#",
-    codeUrl: "#"
-  },
-  {
-    title: "Hardware Project 2",
-    description: "IoT-based smart home automation prototype.",
-    technologies: ["NodeJS", "JavaScript"],
-    liveUrl: "#",
-    codeUrl: "#"
-  },
-  {
-    title: "Hardware Project 3",
-    description: "Wireless sensor network for environmental data.",
-    technologies: ["NodeJS", "MongoDB"],
-    liveUrl: "#",
-    codeUrl: "#"
-  },
-  {
-    title: "Hardware Project 4",
-    description: "RFID-based attendance system.",
-    technologies: ["JavaScript", "NodeJS"],
-    liveUrl: "#",
-    codeUrl: "#"
-  },
+const FILTERS = [
+  { label: "All", value: "all" },
+  { label: "Django", value: "django" },
+  { label: "React", value: "react" },
+  { label: "Tailwind", value: "tailwind" },
+  { label: "Java", value: "java" },
+  { label: "Eclipse", value: "eclipse" },
+  { label: "API", value: "api" },
+  { label: "JavaScript", value: "javascript" },
+  { label: "IoT", value: "iot" }
 ];
 
 const ReactProjects = () => {
-  const [selectedType, setSelectedType] = useState("software");
-  const projectsToShow = selectedType === "software" ? softwareProjects : hardwareProjects;
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
+  const filteredProjects =
+    selectedFilter === "all"
+      ? projects
+      : projects.filter(project =>
+          project.technologies.some(
+            tech => tech.toLowerCase() === selectedFilter
+          )
+        );
 
   return (
     <>
       <div className="relative z-10">
         <h3 className='relative text-4xl text-black font-extrabold text-center mt-10'>Projects</h3>
-        <div className="flex justify-center gap-8 mt-8 mb-6">
-          <button
-            className={`px-10 py-4 text-xl rounded-xl font-bold shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none ${
-              selectedType === "hardware"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-black"
-            }`}
-            onClick={() => setSelectedType("hardware")}
-          >
-            Hardware Projects
-          </button>
-          <button
-            className={`px-10 py-4 text-xl rounded-xl font-bold shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none ${
-              selectedType === "software"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-black"
-            }`}
-            onClick={() => setSelectedType("software")}
-          >
-            Software Projects
-          </button>
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mt-8 mb-8">
+          {FILTERS.map(filter => (
+            <button
+              key={filter.value}
+              className={`
+                px-7 py-3 
+                rounded-3xl 
+                font-semibold 
+                border-2
+                transition 
+                duration-300 
+                transform 
+                hover:scale-110 
+                focus:outline-none
+                cursor-pointer
+                ${selectedFilter === filter.value
+                  ? "bg-gradient-to-r from-green-700 to-green-900 text-white border-green-900 shadow-lg"
+                  : "bg-white text-green-900 border-green-400 hover:bg-green-100 hover:text-green-900 hover:border-green-700"}
+              `}
+              style={{
+                boxShadow: selectedFilter === filter.value ? '0 4px 20px 0 rgba(21,128,61,0.25)' : undefined
+              }}
+              onClick={() => setSelectedFilter(filter.value)}
+            >
+              {filter.label}
+            </button>
+          ))}
         </div>
+
         <div className="py-8 px-4">
-          <h3 className="text-4xl font-extrabold text-center mb-10 text-black">
-            {selectedType === "software" ? "React Projects" : "Hardware Projects"}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {projectsToShow.map((project, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-4 sm:px-8 md:px-16">
+            {filteredProjects.map((project, idx) => (
               <ProjectCard key={idx} {...project} />
             ))}
+            {filteredProjects.length === 0 && (
+              <div className="col-span-full text-center text-gray-500 text-lg">No projects found.</div>
+            )}
           </div>
         </div>
       </div>
