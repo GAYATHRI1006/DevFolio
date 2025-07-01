@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import GayathriProf from '../assets/GayathriProfile.jpeg';
-import ResumePDF from '../assets/GayathriResume.pdf';
-import GmailLogo from '../assets/gmail-logo.png';
+import TypingEffect from './TypingEffect'; // Make sure this exists
+import ResumePDF from '../assets/GayathriResume.pdf'; // Update path if needed
+import GayathriProf from '../assets/GayathriProfile.jpeg'; // Update path if needed
+import GmailLogo from '../assets/gmail-logo.png'; // Update path if needed
+
 const icons = [
   {
-    href: "mailto:gayathrigaya3ece@gmail.com",
+    href: "mailto:yourmail@gmail.com",
     label: "Gmail",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-xl border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -23,7 +25,7 @@ const icons = [
     ),
   },
   {
-    href: "https://www.linkedin.com/in/gayathri1006",
+    href: "https://www.linkedin.com/in/your-linkedin-id/",
     label: "LinkedIn",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#0077b5] to-[#00c6fb] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -36,7 +38,7 @@ const icons = [
     ),
   },
   {
-    href: "https://github.com/GAYATHRI1006",
+    href: "https://github.com/your-github-id",
     label: "GitHub",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#333] to-[#6e5494] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -49,7 +51,7 @@ const icons = [
     ),
   },
   {
-    href: "https://www.instagram.com/_._.unique_one._._/",
+    href: "https://instagram.com/your-instagram-id",
     label: "Instagram",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#fd5949] via-[#d6249f] to-[#285AEB] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -62,56 +64,14 @@ const icons = [
     ),
   },
 ];
-const roles = [
-  "Front-End Developer",
-  "Software Developer",
-  "IoT System Designer",
-  "AI-Researcher",
-  "Debugging Champion",
-  "Networking Engineer"
-];
-
-const TypingEffect = () => {
-  const [displayed, setDisplayed] = useState('');
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [charIdx, setCharIdx] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    let timeout;
-    const currentRole = roles[roleIdx];
-
-    if (!deleting && charIdx <= currentRole.length) {
-      timeout = setTimeout(() => {
-        setDisplayed(currentRole.slice(0, charIdx));
-        setCharIdx(charIdx + 1);
-      }, 80);
-    } else if (deleting && charIdx >= 0) {
-      timeout = setTimeout(() => {
-        setDisplayed(currentRole.slice(0, charIdx));
-        setCharIdx(charIdx - 1);
-      }, 40);
-    } else if (!deleting && charIdx > currentRole.length) {
-      timeout = setTimeout(() => setDeleting(true), 1000);
-    } else if (deleting && charIdx < 0) {
-      setDeleting(false);
-      setRoleIdx((roleIdx + 1) % roles.length);
-      setCharIdx(0);
-    }
-    return () => clearTimeout(timeout);
-  }, [charIdx, deleting, roleIdx]);
-
-  return (
-    <span className="block text-2xl md:text-3xl font-bold text-black mt-4 min-h-[2.5rem] text-left drop-shadow-lg" style={{
-      textShadow: "1px 2px 8px rgba(0,0,0,0.10)"
-    }}>
-      {displayed}
-      <span className="animate-pulse text-gray-900">|</span>
-    </span>
-  );
-};
 
 const HeroSection = () => {
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setShowContent(true), 100);
+  }, []);
+
   const handleDownloadCV = () => {
     const link = document.createElement('a');
     link.href = ResumePDF;
@@ -120,68 +80,77 @@ const HeroSection = () => {
     link.click();
     document.body.removeChild(link);
   };
+
   return (
-  <section className="flex flex-col md:flex-row items-start justify-start min-h-screen px-2 md:px-8 md:pt-18 relative z-10">
-    {/* Left Side: Info & Buttons */}
-    <div className="flex flex-col items-start justify-start w-full md:max-w-1/2 max-w-xl px-1 md:px-18">
-      <span className="font-extrabold text-3xl md:text-5xl text-rose-950 mb-0 text-left" style={{
-        textShadow: "1px 2px 8px rgba(0,0,0,0.30)"
-      }}>
-        Hi, I'm Gayathri G
-      </span>
-      <span className="block text-2xl md:text-3xl font-bold text-yellow-200 mt-4 mb-0 text-left drop-shadow-lg"
-        style={{
-          textShadow: "1px 2px 8px rgba(0,0,0,0.20)"
+    <section className="flex flex-col md:flex-row items-start justify-start min-h-screen px-2 md:px-8 md:pt-18 pt-8 relative z-10">
+      {/* Left Side: Info & Buttons */}
+      <div
+        className={`flex flex-col items-center justify-center w-full md:max-w-1/2 max-w-xl px-1 md:px-18 text-center transition-all duration-700 ease-out
+        ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      >
+        <span className="font-extrabold text-4xl md:text-5xl text-rose-950 mb-0 w-full text-center" style={{
+          textShadow: "1px 2px 8px rgba(0,0,0,0.30)"
         }}>
-        and I'm
-      </span>
-      <TypingEffect />
-      <p className="text-emerald-950 font-semibold mt-4 text-lg md:text-xl text-left leading-relaxed">
-        A passionate Front-End Developer and Electronics enthusiast who loves building clean, responsive, and interactive user interfaces. Always curious to explore new technologies and bring ideas to life through code.
-      </p>
-      {/* Social Icons */}
-      <div className="flex flex-row gap-6 mt-8 mb-6">
-        {icons.map((icon) => (
-          <a
-            key={icon.label}
-            href={icon.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={icon.label}
-            className="hover:scale-110 transition-transform"
+          Hi, I'm Gayathri G
+        </span>
+        <span className="block text-2xl md:text-3xl font-bold text-yellow-200 mt-4 mb-0 w-full text-center drop-shadow-lg"
+          style={{
+            textShadow: "1px 2px 8px rgba(0,0,0,0.20)"
+          }}>
+          and I'm
+        </span>
+        <div className="w-full flex justify-center">
+          <TypingEffect />
+        </div>
+        <p className="text-emerald-950 font-semibold mt-4 text-lg md:text-xl w-full text-center leading-relaxed">
+          A passionate Front-End Developer and Electronics enthusiast who loves building clean, responsive, and interactive user interfaces. Always curious to explore new technologies and bring ideas to life through code.
+        </p>
+        {/* Social Icons */}
+        <div className="flex flex-row gap-6 mt-8 mb-6 justify-center w-full">
+          {icons.map((icon) => (
+            <a
+              key={icon.label}
+              href={icon.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={icon.label}
+              className="hover:scale-110 transition-transform"
+            >
+              {icon.svg}
+            </a>
+          ))}
+        </div>
+        {/* Download CV Button */}
+        <div className="w-full flex justify-center">
+          <button
+            onClick={handleDownloadCV}
+            className="group mt-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#334155] text-white font-bold shadow-xl border-2 border-white/90 backdrop-blur-md relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            {icon.svg}
-          </a>
-        ))}
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-60 transition duration-300 blur-xl bg-gradient-to-r from-[#334155] to-[#0f172a]"></span>
+            <span className="relative z-10 flex items-center gap-2">
+              Download CV
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
-      {/* Download CV Button */}
-  <button
-  onClick={handleDownloadCV}
-  className="group mt-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#334155] text-white font-bold shadow-xl border-2 border-white/90 backdrop-blur-md relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
->
-  <span className="absolute inset-0 opacity-0 group-hover:opacity-60 transition duration-300 blur-xl bg-gradient-to-r from-[#334155] to-[#0f172a]"></span>
-  <span className="relative z-10 flex items-center gap-2">
-    Download CV
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-6-6m6 6l6-6" />
-    </svg>
-  </span>
-</button>
-    </div>
-    {/* Right Side: Profile Image */}
-        <div className="flex flex-col items-center justify-center w-full md:max-w-1/2 h-full mb-10 md:mb-0">
-      <div className="flex flex-1 mt-6 justify-center min-h-[500px]"> {/* Increased min-h for better vertical centering */}
-        <div className="absolute rounded-full bg-blue-500 blur-2xl w-[400px] h-[400px] md:w-[460px] md:h-[460px] z-0"></div>
-        <img
-          src={GayathriProf}
-          alt="Profile"
-          className="relative z-10 h-[340px] w-[340px] md:h-[400px] md:w-[400px] rounded-full border-6 border-white object-cover shadow-2xl"
-        />
+
+      {/* Right Side: Profile Image */}
+      <div className="flex flex-col  justify-center w-full md:max-w-1/2 h-full mt-4 mb-10 md:mb-0">
+        <div className="relative flex flex-1 mt-6 justify-center min-h-[500px]">
+          <div className="absolute rounded-full bg-blue-500 blur-2xl w-[400px] h-[400px] md:w-[460px] md:h-[460px] z-0"></div>
+          <img
+            src={GayathriProf}
+            alt="Profile"
+            className={`relative z-10 h-[340px] w-[340px] md:h-[400px] md:w-[400px] rounded-full border-6 border-white object-cover shadow-2xl transition-all duration-700 ease-out
+            ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+          />
+        </div>
       </div>
-    </div>
-  </section>
-);
-  
+    </section>
+  );
 };
 
 export default HeroSection;

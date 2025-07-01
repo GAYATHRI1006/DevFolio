@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Skills from './components/Skills';
 import ReactProjects from './components/ReactProjects';
+import About from './components/About';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Bg />
       <Navbar />
       <HeroSection />
+      {/* <About /> */}
       <Skills/>
       <ReactProjects/>
       
