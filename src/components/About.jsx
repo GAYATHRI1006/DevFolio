@@ -15,11 +15,11 @@ const About = () => {
         {/* Left: Profile Image */}
         <div className="flex flex-col justify-center w-full md:w-1/2 h-full mt-4 mb-10 md:mb-0">
           <div className="relative flex flex-1 mt-0 justify-center min-h-[400px]"> {/* Changed mt-6 to mt-0 and min-h */}
-            <div className="absolute rounded-full bg-blue-500 blur-2xl w-[340px] h-[340px] md:w-[400px] md:h-[400px] z-0"></div> {/* Reduced size */}
+            <div className="absolute rounded-full bg-blue-500 blur-2xl w-[400px] h-[400px] md:w-[460px] md:h-[460px] z-0"></div> {/* Reduced size */}
             <img
               src={GayathriProf}
               alt="Profile"
-              className={`relative z-10 h-[260px] w-[260px] md:h-[320px] md:w-[320px] rounded-full border-6 border-white object-cover shadow-2xl transition-all duration-700 ease-out
+              className={`relative z-10 h-[340px] w-[340px] md:h-[400px] md:w-[400px] rounded-full border-6 border-white object-cover shadow-2xl transition-all duration-700 ease-out
               ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
             />
           </div>
