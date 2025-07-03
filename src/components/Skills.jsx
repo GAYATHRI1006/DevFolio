@@ -51,7 +51,7 @@ const Skills = () => {
     visible
       ? 'opacity-100 translate-y-0'
       : 'opacity-0 translate-y-16 pointer-events-none'
-  } px-4 sm:px-10 md:px-16 xl:px-34`}
+  } px-4 sm:px-10 md:px-16 xl:px-38`}
 >
       <h3 className="relative text-4xl md:text-5xl font-extrabold text-center mb-10
         text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-blue-950 to-blue-300 drop-shadow-lg tracking-wide
@@ -63,7 +63,7 @@ const Skills = () => {
         {skills.map(skill => (
            <div
       key={skill.label}
-      className="flex flex-col justify-center items-center bg-gradient-to-br from-white via-emerald-100 to-teal-200/80 rounded-xl shadow-md p-2 hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full h-[110px] md:h-[132px] min-w-[160px] max-w-[220px]"
+      className="flex flex-col justify-center items-center bg-gradient-to-br from-white via-emerald-100 to-teal-200/80 rounded-xl shadow-md p-2 hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full h-[110px] md:h-[110px] min-w-[160px] max-w-[180px]"
     >
       <span className="flex items-center justify-center text-5xl m-2 md:mb-2 h-14 w-14">{skill.icon}</span>
       <h4 className="text-base font-semibold text-gray-800 text-center mt-2">{skill.label}</h4>
