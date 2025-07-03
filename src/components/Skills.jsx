@@ -47,7 +47,7 @@ const Skills = () => {
 <section
   id="skills"
   ref={sectionRef}
-  className={`scroll-mt-32 transition-all duration-1000 ease-out ${
+  className={`scroll-mt-32 mt-30 transition-all duration-1000 ease-out ${
     visible
       ? 'opacity-100 translate-y-0'
       : 'opacity-0 translate-y-16 pointer-events-none'
