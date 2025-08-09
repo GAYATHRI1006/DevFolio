@@ -11,12 +11,12 @@ const skills = [
   { icon: <FaCss3Alt className="text-blue-600" />, label: 'CSS' },
   { icon: <FaJs className="text-yellow-400" />, label: 'JavaScript' },
   { icon: <FaReact className="text-cyan-400" />, label: 'React' },
-  { icon: <FaNodeJs className="text-green-700" />, label: 'Node.js' },
-  { icon: <FaNpm className="text-red-600" />, label: 'NPM' },
+ 
+
   { icon: <SiTailwindcss className="text-sky-400" />, label: 'Tailwind CSS' },
-  { icon: <SiDjango className="text-green-900" />, label: 'Django' },
-  { icon: <img src={viteLogo} alt="Vite" className="h-10 w-10 object-contain" />, label: 'Vite.js' }, // PNG for Vite
-  { icon: <SiMongodb className="text-green-600" />, label: 'MongoDB' },
+  
+
+  
   { icon: <SiMysql className="text-blue-700" />, label: 'MySQL' },
   { icon: <FaGithub className="text-gray-800" />, label: 'GitHub' },
   { icon: <FaPython className="text-yellow-500" />, label: 'Python' },
@@ -24,7 +24,7 @@ const skills = [
   { icon: <SiEclipseide className="text-indigo-700" />, label: 'Eclipse' },
   { icon: <img src={figmaLogo} alt="Figma" className="h-10 w-10 object-contain" />, label: 'Figma' }, // PNG for Figma
   { icon: <SiCanva className="text-blue-400" />, label: 'Canva' },
-  { icon: <SiAnaconda className="text-green-700" />, label: 'Anaconda' },
+ 
   { icon: <SiJupyter className="text-orange-400" />, label: 'Jupyter Notebook' },
 ];
 
