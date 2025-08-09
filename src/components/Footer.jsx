@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <section id="contact">
-         <div id='footer' className="footer  w-full bg-gray-800 shadow-lg">
+         <div id='footer' className="footer  relative z-10 w-full bg-gray-800 shadow-lg">
         <div className="container mx-auto px-4 py-4 text-center">
             <p className="text-gray-400">© 2025 Gayathri G. All rights reserved. </p>
             <div className="social-links mt-4">
