@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import Skills from './components/Skills';
 import ReactProjects from './components/ReactProjects';
 import About from './components/About';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <About /> 
       <Skills/>
       <ReactProjects/>
+      <Footer/>
       
     </>
   );
