@@ -51,7 +51,7 @@ const icons = [
     ),
   },
   {
-    href: "https://instagram.com/your-instagram-id",
+    href: "https://www.instagram.com/_._.unique_one._._/",
     label: "Instagram",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#fd5949] via-[#d6249f] to-[#285AEB] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
