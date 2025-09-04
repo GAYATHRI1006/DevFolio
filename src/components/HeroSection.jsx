@@ -6,7 +6,7 @@ import GmailLogo from '../assets/gmail-logo.png'; // Update path if needed
 
 const icons = [
   {
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:gayathrigaya3ece@gmail.com",
     label: "Gmail",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-xl border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -25,7 +25,7 @@ const icons = [
     ),
   },
   {
-    href: "https://www.linkedin.com/in/your-linkedin-id/",
+    href: "https://www.linkedin.com/in/gayathri1006/",
     label: "LinkedIn",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#0077b5] to-[#00c6fb] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
@@ -38,7 +38,7 @@ const icons = [
     ),
   },
   {
-    href: "https://github.com/your-github-id",
+    href: "https://github.com/GAYATHRI1006",
     label: "GitHub",
     svg: (
       <span className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#333] to-[#6e5494] shadow-lg border-2 border-white transition-all duration-300 relative overflow-hidden hover:scale-110">
