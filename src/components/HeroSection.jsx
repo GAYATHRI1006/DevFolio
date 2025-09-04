@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TypingEffect from './TypingEffect'; // Make sure this exists
-import ResumePDF from '../assets/GayathriResume.pdf'; // Update path if needed
+import ResumePDF from '../assets/GAYATHRI_G_Resume.pdf'; // Update path if needed
 import GayathriProf from '../assets/GayathriProfile.jpeg'; // Update path if needed
 import GmailLogo from '../assets/gmail-logo.png'; // Update path if needed
 
